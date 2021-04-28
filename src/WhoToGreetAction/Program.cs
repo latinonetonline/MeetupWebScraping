@@ -38,8 +38,10 @@ namespace MeetupWebScraping
             string value = actionContext.GetParameter(Parameters.GitHubToken);
 
             string html = await GetPageHtmlAsync(new("https://www.meetup.com/es-ES/latino-net-online/events/past/rss"));
-            var events = await GetEventsAsync(html);
-            await UploadEventsAsync(events, value);
+
+            List<MeetupEvent> events = await GetEventsAsync(html);
+
+            await UploadEventsAsync(new(DateTime.Now, events), value);
 
             await Browser.DisposeAsync();
 
@@ -123,7 +125,7 @@ namespace MeetupWebScraping
             return new(youtubeLink);
         }
 
-        static async Task UploadEventsAsync(IEnumerable<MeetupEvent> meetupEvents, string githubToken)
+        static async Task UploadEventsAsync(Result result, string githubToken)
         {
 
             GitHubClient githubClient = new(new Octokit.ProductHeaderValue(nameof(MeetupWebScraping)));
@@ -146,11 +148,11 @@ namespace MeetupWebScraping
 
             if (fileExist)
             {
-                await gitHubService.UpdateFileAsync(251758832, path, fileName, JsonSerializer.Serialize(meetupEvents, options));
+                await gitHubService.UpdateFileAsync(251758832, path, fileName, JsonSerializer.Serialize(result, options));
             }
             else
             {
-                await gitHubService.CreateFileAsync(251758832, path, fileName, JsonSerializer.Serialize(meetupEvents, options));
+                await gitHubService.CreateFileAsync(251758832, path, fileName, JsonSerializer.Serialize(result, options));
             }
         }
     }
