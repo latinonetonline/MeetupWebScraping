@@ -1,7 +1,7 @@
-name: 'Template NET Core Action'
-description: 'Console greet whoever you tell'
+name: 'Latino .NET Online: MeetupWebScraping'
+description: 'Get 3 last meetup in Latino .NET Online's Meetup Profile'
 inputs:
-  who-to-greet: 
+  gh-token: 
     required: true
 runs:
   using: 'node12'
