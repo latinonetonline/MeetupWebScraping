@@ -1,5 +1,5 @@
 name: 'Latino .NET Online: MeetupWebScraping'
-description: 'Get 3 last meetup in Latino .NET Online's Meetup Profile'
+description: 'Get 3 last meetup in Latino .NET Online´s Meetup Profile'
 inputs:
   gh-token: 
     required: true

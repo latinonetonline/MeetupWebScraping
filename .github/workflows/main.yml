@@ -1,4 +1,4 @@
-name: .NET Core Action Template
+name: Meetup WebScraping
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
 
 jobs:
    
-  test:
+  job:
     name: test
     runs-on: ubuntu-latest
     
@@ -23,7 +23,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-        
+    
+    - name: Copy AivenWeb Packages
+      run: cp offline-packages packages
+
+
     - uses: ./
       with:
         gh-token: ${{ secrets.GHToken }}
