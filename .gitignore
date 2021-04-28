@@ -44,3 +44,5 @@ launchSettings.json
 packages
 
 .local-chromium
+
+node_modules
