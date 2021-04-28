@@ -41,6 +41,8 @@ namespace MeetupWebScraping
             var events = await GetEventsAsync(html);
             await UploadEventsAsync(events, value);
 
+            await Browser.DisposeAsync();
+
             Console.WriteLine("Finish");
         }
 
