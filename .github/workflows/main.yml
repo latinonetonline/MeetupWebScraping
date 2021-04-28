@@ -14,7 +14,7 @@ on:
 jobs:
    
   job:
-    name: test
+    name: Run Action
     runs-on: ubuntu-latest
     
     steps:
@@ -25,7 +25,7 @@ jobs:
         dotnet-version: 5.0.x
     
     - name: Copy AivenWeb Packages
-      run: cp offline-packages packages
+      run: cp -r offline-packages src/packages
 
 
     - uses: ./
