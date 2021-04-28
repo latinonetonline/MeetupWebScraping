@@ -1,0 +1,8 @@
+name: 'Template NET Core Action'
+description: 'Console greet whoever you tell'
+inputs:
+  who-to-greet: 
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
