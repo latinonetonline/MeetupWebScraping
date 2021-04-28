@@ -1,56 +1,11 @@
-# NETCore Action Template
-With this template you can build your Actions without having to configure anything. You just have to change the name and modify the C# code to your liking
+# Meetup WebScraping
 
-## How to use?
+Este proyecto se ejecuta cada hora.
 
-### Edit action.yml
+Entra en el siguiente link de Meetup.com [https://www.meetup.com/es-ES/latino-net-online/events/past/rss](https://www.meetup.com/es-ES/latino-net-online/events/past/rss)
 
-Edit action.yml Name, Description and Inputs but don't modify Runs
+Y guarda los 3 meetups más recientes en el archivo [PastEvents](https://github.com/latinonetonline/eventsdb/blob/main/events/PastEvents)
 
-``` yaml
-name: 'Template NET Core Action'
-description: 'Console greet whoever you tell'
-inputs:
-  who-to-greet: 
-    required: true
-runs:
-  using: 'node12'
-  main: 'index.js'
-```
-
-### Create your Console with NETCore
-
-The folder 'src' has a Console Project very basic.
-If you want, you can delete it and create a new project. But you have to have a few indications.
+El sitio web principal de [Latino .NET Online](https://latinonet.online) consume ese [JSON](https://raw.githubusercontent.com/latinonetonline/eventsdb/main/events/PastEvents) para mostrarlos en la sección "Últimos Webinars Realizados"
 
 
-the developer needs to get the parameters assigned to it in the workflow.
-For this need I made a small library to obtain the parameter values in a simple way.
-This library is [GitHubActionSharp](https://github.com/lauchacarro/GitHubActionSharp) and is available at NuGet
-
-``` csharp
-using GitHubActionSharp;
-using System;
-
-namespace WhoToGreetAction
-{
-    enum Parameters
-    {
-        [Parameter("who-to-greet")]
-        WhoToGreet
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            GitHubActionContext actionContext = new GitHubActionContext(args);
-            actionContext.LoadParameters();
-
-            string value = actionContext.GetParameter(Parameters.WhoToGreet);
-
-            Console.WriteLine($"Hello {value}!");
-        }
-    }
-}
-```
