@@ -42,3 +42,5 @@ launchSettings.json
 /src/Properties/launchSettings.json
 
 packages
+
+.local-chromium
