@@ -4,9 +4,12 @@ on:
   push:
     branches: [ main ]
     
-  schedule: # Run workflow automatically
-   # This will make it run every hour
-   - cron: '0 * * * *' 
+  schedule: 
+   # Cada 5 minutos. Igual ni funciona 🤷‍♂️
+   - cron: '*/5 * * * *' 
+   
+  repository_dispatch:
+    types: [MeetupWebScraping-Dispatch]
      
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
