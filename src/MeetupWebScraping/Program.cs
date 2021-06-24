@@ -94,6 +94,8 @@ namespace MeetupWebScraping
 
                 IElement dateElement = element.QuerySelector("div > div:nth-child(1) > div > div > div:nth-child(1) > div.eventTimeDisplay.text--labelSecondary.text--small.wrap--singleLine--truncate.margin--halfBottom > time");
 
+                long meetupId = long.Parse(element.Id.Split("-")[1]);
+
                 Uri linkMeetup = new("https://www.meetup.com" + linkElement.GetAttribute("href"));
 
                 string title = titleElement.InnerHtml;
@@ -106,7 +108,7 @@ namespace MeetupWebScraping
 
                 Uri youtubeLink = await GetYoutubeLinkAsync(linkMeetup);
 
-                events.Add(new(title, summaryHtml, new Uri(imageUrl), linkMeetup, youtubeLink, date));
+                events.Add(new(meetupId, title, summaryHtml, new Uri(imageUrl), linkMeetup, youtubeLink, date));
             }
 
             return events;

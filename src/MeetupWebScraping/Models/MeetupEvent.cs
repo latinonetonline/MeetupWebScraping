@@ -2,5 +2,5 @@
 
 namespace MeetupWebScraping.Models
 {
-    record MeetupEvent(string Title, string Description, Uri Image, Uri MeetupLink, Uri YoutubeLink, DateTime StartDate);
+    record MeetupEvent(long Id, string Title, string Description, Uri Image, Uri MeetupLink, Uri YoutubeLink, DateTime StartDate);
 }
